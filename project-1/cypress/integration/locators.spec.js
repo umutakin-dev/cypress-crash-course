@@ -33,7 +33,27 @@ describe("Locators", () => {
     cy.get("button.Elements-btn[type='submit']");
 
     // Get all elements with specific data test id
-    cy.get("[data-cy='btn-id-1']")
+    cy.get("[data-cy='btn-id-1']");
     cy.getByTestId("btn-id-1");
+  });
+
+  it("locating elements with the contains command", () => {
+    // Get element by text
+    cy.contains("Unique Text");
+
+    // Get element by text (non unique) (only the first element)
+    cy.contains("Not Unique Text");
+
+    // With Selector
+    cy.contains("[type='submit']", "Not Unique Text");
+    cy.contains("form", "Not Unique Text");
+
+    // Combine Get and Contains
+    cy.get("[type='submit']").contains("Not Unique Text");
+  });
+
+  it("localting elements with the find command", () => {
+    cy.get("#form-1").find(".btn-1");
+    cy.get("#form-1").find(".btn-2");
   });
 });
